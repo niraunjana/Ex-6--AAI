@@ -4,6 +4,7 @@
 <H3>DATE:</H3>
 <H1 ALIGN =CENTER>Implementation of Semantic ANalysis</H1>
 <H3>Aim: 
+	
 To perform Parts of speech identification and Synonym using Natural Language Processing (NLP) techniques. </H3> 
  <BR>
 <h3>Algorithm:</h3>
