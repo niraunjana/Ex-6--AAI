@@ -8,6 +8,7 @@
 To perform Parts of speech identification and Synonym using Natural Language Processing (NLP) techniques. </H3> 
 
 <h3>Algorithm:</h3>
+
 Step 1: Import the nltk library.<br>
 
 Step 2: Download the 'punkt', 'wordnet', and 'averaged_perceptron_tagger' resources.<br>
