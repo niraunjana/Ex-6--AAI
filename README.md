@@ -18,11 +18,50 @@ Step 5:Iterate through each word in the tokenized text.<br>
 •	Print the unique sets of synonyms and antonyms.
 <H3>Program:</H3>
 
-Insert your code here
+```
+!pip install nltk
+import nltk
+#import wordnet
+nltk.download( 'punkt' )
+nltk.download('wordnet')
+from nltk.tokenize import word_tokenize
+nltk.download( 'averaged_perceptron_tagger' )
+sentence=input()
+# Tokenize the sentence into words
+words = word_tokenize(sentence)
+# Identify the parts of speech for each word
+pos_tags= nltk.pos_tag(words)
+# Print the parts of speech
+for word, tag in pos_tags:
+	print(word, tag)
+ from nltk.corpus import wordnet
 
-<H3>Output</H3>
+# Identify synonyms and antonyms for each word
+synonyms =[]
+antonyms =[]
+for word in words:
+	for syn in wordnet.synsets(word) :
+		for lemma in syn.lemmas():
+			synonyms . append (lemma . name( ) )
+			if lemma . antonyms():
+				antonyms . append ( lemma. antonyms ( ) [0] . name ( ) )
+# Print the synonyms and antonyms
+print ( "Synonyms : " ,set (synonyms) )
+print ( "Antonyms : " ,set(antonyms) )
+```
 
-Show your results here
+## Output
+
+### Sample Input
+
+![image](https://github.com/niraunjana/Ex-6--AAI/assets/119395610/c4fc8879-1115-4fb6-90dc-a1fc75e1da2b)
+
+### Sample Output 
+
+![image](https://github.com/niraunjana/Ex-6--AAI/assets/119395610/f1c2bb2a-9c3a-43f1-8d5f-f39e503e0424)
+
+![image](https://github.com/niraunjana/Ex-6--AAI/assets/119395610/b7d73cae-21f4-4901-a211-d108a591a73b)
+
 
 <H3>Result:</H3>
 Thus ,the program to perform the Parts of Speech identification and Synonymis executed sucessfully.
