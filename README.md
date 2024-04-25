@@ -27,48 +27,52 @@ Step 5:Iterate through each word in the tokenized text.<br>
 <H3>Program:</H3>
 
 ```
-!pip install nltk
 import nltk
-#import wordnet
-nltk.download( 'punkt' )
-nltk.download('wordnet')
-from nltk.tokenize import word_tokenize
-nltk.download( 'averaged_perceptron_tagger' )
-sentence=input()
-# Tokenize the sentence into words
-words = word_tokenize(sentence)
-# Identify the parts of speech for each word
-pos_tags= nltk.pos_tag(words)
-# Print the parts of speech
-for word, tag in pos_tags:
-	print(word, tag)
- from nltk.corpus import wordnet
+from nltk.corpus import wordnet
 
-# Identify synonyms and antonyms for each word
-synonyms =[]
-antonyms =[]
-for word in words:
-	for syn in wordnet.synsets(word) :
-		for lemma in syn.lemmas():
-			synonyms . append (lemma . name( ) )
-			if lemma . antonyms():
-				antonyms . append ( lemma. antonyms ( ) [0] . name ( ) )
-# Print the synonyms and antonyms
-print ( "Synonyms : " ,set (synonyms) )
-print ( "Antonyms : " ,set(antonyms) )
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('wordnet')
+
+def get_synonyms(word):
+    synonyms = set()
+    for syn in wordnet.synsets(word):
+        for lemma in syn.lemmas():
+            synonyms.add(lemma.name())
+    return synonyms
+
+def process_text_file(file_path):
+    with open(file_path, 'r') as file:
+        text = file.read()
+    return text  # Return the processed text
+
+text = process_text_file('sample.txt')
+
+# Tokenize the text into sentences
+sentences = nltk.sent_tokenize(text)
+
+for sentence in sentences:
+    # Tokenize each sentence into words
+    words = nltk.word_tokenize(sentence)
+
+    # Perform part-of-speech tagging
+    pos_tags = nltk.pos_tag(words)
+
+    # Extract verbs
+    verbs = [word for word, pos in pos_tags if pos.startswith('V')]
+
+    # Get synonyms for each verb
+    for verb in verbs:
+        synonyms = get_synonyms(verb)
+        print(f"Verb: {verb}")
+        print(f"Synonyms: {', '.join(synonyms)}\n")
+
 ```
 
 ## Output
 
-### Sample Input
+![image](https://github.com/niraunjana/Ex-6--AAI/assets/119395610/8cd62e50-bd6d-431d-951b-0af8cc17a546)
 
-![image](https://github.com/niraunjana/Ex-6--AAI/assets/119395610/c4fc8879-1115-4fb6-90dc-a1fc75e1da2b)
-
-### Sample Output 
-
-![image](https://github.com/niraunjana/Ex-6--AAI/assets/119395610/f1c2bb2a-9c3a-43f1-8d5f-f39e503e0424)
-
-![image](https://github.com/niraunjana/Ex-6--AAI/assets/119395610/b7d73cae-21f4-4901-a211-d108a591a73b)
 
 
 <H3>Result:</H3>
